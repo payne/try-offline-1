@@ -9,7 +9,7 @@
         
         
         <a href="https://codepen.io/wizly/pen/BlKxo/">Tabs are modeled off of Weiss' example</a>
-<div class="container"><h1>Bootstrap  tab panel example (using nav-pills)  </h1></div>
+<div class="container"><h1>Bootstrap Math Drills</h1></div>
 <div id="exTab1" class="container">	
 <ul  class="nav nav-pills">
 			<li class="active">
@@ -30,6 +30,8 @@
 				<button class="btn" id="1a1">8</button>
 				<button class="btn" id="1a2">7</button>
 				<button class="btn" id="1a3">9</button>
+				<p id="addFeedback"></p>
+				<button id="addNewProblem" class="btn">New Addition Problem</button>
 				</div>
 			</div><!-- id=1a -->
 				<div class="tab-pane" id="2a">
@@ -46,22 +48,50 @@
   <script>
   /* global $ */
 $(document).ready(function() {
-    var grade=function(a) {
+    var shuffle=function(array) {
+      // from http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+      var currentIndex = array.length, temporaryValue, randomIndex;
+
+      // While there remain elements to shuffle...
+      while (0 !== currentIndex) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+      return array;
+    };
+    var newAddProblem=function() {
+      $("#addFeedback").text("");
+      var a = Math.floor(Math.random() * 100);
+      var b = Math.floor(Math.random() * 100);
+      var delta = Math.floor(Math.random()*5)+1;
+      var answer = a+b;
+      var problemText = a+" + " + b +" = ???";
+      $("#addProblem").text(problemText);
+      console.log("Just set innerHTML to: "+problemText);
+      var choices=[answer, answer+delta, answer-delta];
+      choices = shuffle(choices);
+      assign("#1a1",choices.pop(), answer);
+      assign("#1a2",choices.pop(), answer);
+      assign("#1a3",choices.pop(), answer);
+    };
+    $("#addNewProblem").click(newAddProblem);
+    var grade=function(a,n) {
        var answer=a;
-       console.log("a="+a);
-    }
-  var a = Math.floor(Math.random() * 100);
-  var b = Math.floor(Math.random() * 100);
-  var delta = Math.floor(Math.random()*5)+1;
-  var answer = a+b;
-  var problemText = a+" + " + b +" = ???";
-  $("#addProblem").text(problemText);
-  console.log("Just set innerHTML to: "+problemText);
-  var choices=[answer, answer+delta, answer-delta];
-  $("#1a1").text(choices.pop());
-  $("#1a1").click(function() { grade(4); console.log(this); });
-  $("#1a2").text(choices.pop());
-  $("#1a3").text(choices.pop());
+       console.log("a="+a+" n="+n);
+       var feedback = a==n ? "Correct!" : "Try again!";
+       $("#addFeedback").text(feedback);
+    };
+    var assign=function(idStr, number, answer) {
+      $(idStr).text(number);
+      $(idStr).click(function() { grade(answer, number); })  
+    };
+    newAddProblem();
 });
 </script>
     </body>
