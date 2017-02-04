@@ -1,0 +1,63 @@
+<html>
+    <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+    <body>
+        
+        
+        <a href="https://codepen.io/wizly/pen/BlKxo/">Tabs are modeled off of Weiss' example</a>
+<div class="container"><h1>Bootstrap  tab panel example (using nav-pills)  </h1></div>
+<div id="exTab1" class="container">	
+<ul  class="nav nav-pills">
+			<li class="active">
+        <a  href="#1a" data-toggle="tab">Addition</a>
+			</li>
+			<li><a href="#2a" data-toggle="tab">Subtraction</a>
+			</li>
+			<li><a href="#3a" data-toggle="tab">Multiplication</a>
+			</li>
+  		<li><a href="#4a" data-toggle="tab">Division</a>
+			</li>
+		</ul>
+
+			<div class="tab-content clearfix">
+			  <div class="tab-pane active" id="1a">
+          <h3>Content's background color is the same for the tab</h3>
+				</div>
+				<div id="add"><p id="addProblem">3+4=7</p>
+				<button class="btn" id="1a1">8</button>
+				<button class="btn" id="1a2">7</button>
+				<button class="btn" id="1a3">9</button>
+				</div>
+				<div class="tab-pane" id="2a">
+          <h3>We use the class nav-pills instead of nav-tabs which automatically creates a background color for the tab</h3>
+				</div>
+        <div class="tab-pane" id="3a">
+          <h3>We applied clearfix to the tab-content to rid of the gap between the tab and the content</h3>
+				</div>
+          <div class="tab-pane" id="4a">
+          <h3>We use css to change the background color of the content to be equal to the tab</h3>
+				</div>
+			</div>
+  </div>
+  <script>
+  /* global $ */
+$(document).ready(function() {
+  var a = Math.floor(Math.random() * 100);
+  var b = Math.floor(Math.random() * 100);
+  var delta = Math.floor(Math.random()*5)+1;
+  var answer = a+b;
+  var problemText = a+" + " + b +" = ???";
+  $("#addProblem").text(problemText);
+  console.log("Just set innerHTML to: "+problemText);
+  var choices=[answer, answer+delta, answer-delta];
+  $("#1a1").text(choices.pop());
+  $("#1a2").text(choices.pop());
+  $("#1a3").text(choices.pop());
+});
+</script>
+    </body>
+</html>
