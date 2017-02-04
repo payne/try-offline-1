@@ -46,6 +46,10 @@
   <script>
   /* global $ */
 $(document).ready(function() {
+    var grade=function(a) {
+       var answer=a;
+       console.log("a="+a);
+    }
   var a = Math.floor(Math.random() * 100);
   var b = Math.floor(Math.random() * 100);
   var delta = Math.floor(Math.random()*5)+1;
@@ -55,6 +59,7 @@ $(document).ready(function() {
   console.log("Just set innerHTML to: "+problemText);
   var choices=[answer, answer+delta, answer-delta];
   $("#1a1").text(choices.pop());
+  $("#1a1").click(function() { grade(4); console.log(this); });
   $("#1a2").text(choices.pop());
   $("#1a3").text(choices.pop());
 });
