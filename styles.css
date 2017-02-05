@@ -4,5 +4,10 @@ body {
 }
 
 ul {
-  background-color: black !important;
+  background-color: black;
+}
+
+button {
+  background-color: black;
+  color: #337ab7;
 }
